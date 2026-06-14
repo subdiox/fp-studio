@@ -1,0 +1,132 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ---- Editorial finance palette: warm paper ---- */
+  --color-paper: #f4eee1;
+  --color-paper-2: #efe7d6;
+  --color-card: #fbf8f1;
+  --color-card-raised: #ffffff;
+
+  --color-ink: #211d16;
+  --color-ink-soft: #4a4337;
+  --color-ink-faint: #8a8068;
+
+  --color-line: #e3d8c2;
+  --color-line-soft: #ece3d1;
+
+  /* pine green = wealth / assets / income */
+  --color-pine: #1f4d3f;
+  --color-pine-soft: #386655;
+  --color-pine-tint: #dce8e1;
+
+  /* gold = investment / NISA */
+  --color-gold: #b8862b;
+  --color-gold-soft: #cda24a;
+  --color-gold-tint: #f0e4c8;
+
+  /* terracotta = expense */
+  --color-clay: #b5532a;
+  --color-clay-soft: #c87a52;
+  --color-clay-tint: #f1ddd0;
+
+  /* slate blue = cash savings */
+  --color-slate: #4a6072;
+  --color-slate-tint: #dde4ea;
+
+  --font-display: 'Shippori Mincho', 'Zen Kaku Gothic New', serif;
+  --font-sans: 'Zen Kaku Gothic New', system-ui, sans-serif;
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: 'palt' 1;
+  }
+
+  /* tabular numerals everywhere numbers matter */
+  .tnum {
+    font-feature-settings: 'tnum' 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border-radius: 8px;
+    border: 2px solid var(--color-paper);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-faint);
+  }
+
+  /* range input — warm editorial slider */
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--color-line);
+    outline: none;
+    cursor: pointer;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-pine);
+    border: 3px solid var(--color-card-raised);
+    box-shadow: 0 1px 4px rgba(33, 29, 22, 0.28);
+    transition: transform 0.12s ease;
+  }
+  input[type='range']::-webkit-slider-thumb:hover {
+    transform: scale(1.18);
+  }
+  input[type='range']::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-pine);
+    border: 3px solid var(--color-card-raised);
+    box-shadow: 0 1px 4px rgba(33, 29, 22, 0.28);
+  }
+}
+
+/* paper grain backdrop */
+.grain {
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(33, 29, 22, 0.05) 1px,
+      transparent 0
+    );
+  background-size: 22px 22px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
